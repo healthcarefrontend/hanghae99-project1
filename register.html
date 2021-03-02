@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>회원가입 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .wrap {
+            width: 400px;
+            margin: auto;
+        }
+
+
+        .title1 {
+            width: 400px;
+            margin : 50px; 30px; 30px; 20px;
+        }
+
+        .join1 {
+            width: 400px;
+            margin: auto;
+            border: black solid;
+            border-radius: 5px;
+
+        }
+
+        .join2 {
+            margin: 30px;
+            auto;
+
+        }
+
+        .btn-order {
+            margin: auto;
+            width: 100px;
+            display: block;
+        }
+
+
+    </style>
+
+    <script>
+        function join() {
+            alert('회원가입이 완료되었습니다!');
+        }
+
+
+    </script>
+</head>
+
+<body>
+<div class="wrap">
+    <div>
+        <h1 class="title1"> 회원가입 페이지 </h1>
+    </div>
+
+    <div class="join1">
+        <div class="input-group mb-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default"
+                       aria-describedby="inputGroup-sizing-default" placeholder="이름을 입력하세요">
+            </div>
+
+
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">생년월일</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default"
+                       aria-describedby="inputGroup-sizing-default" placeholder="생년월일을 입력하세요">
+            </div>
+
+
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">연락처</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default"
+                       aria-describedby="inputGroup-sizing-default" placeholder="연락처를 입력하세요">
+            </div>
+
+
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">아이디</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default"
+                       aria-describedby="inputGroup-sizing-default" placeholder="아이디를 입력하세요">
+            </div>
+
+
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">패스워드</span>
+                </div>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+        </div>
+    </div>
+    <div class="join2">
+        <button type="button" onclick="join()" class="btn btn-primary btn-order">회원가입</button>
+    </div>
+
+</body>
+
+</html>
