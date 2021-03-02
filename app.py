@@ -17,16 +17,18 @@ def write_review():
     count_receive = request.form['count_give']
     addr_receive = request.form['addr_give']
     num_receive = request.form['num_give']
+    extra_receive = request.form['extra_give']
 
     doc = {
         'name':name_receive,
         'count':count_receive,
         'addr':addr_receive,
-        'num' : num_receive
+        'num' : num_receive,
+        'extra': extra_receive
     }
-    db.mynote.insert_one(doc)
+    db.mysystem.insert_one(doc)
 
-    return jsonify({'result' : 'success', 'msg': '저장 완료!'})
+    return jsonify({'result' : 'success', 'msg': '예약 완료!'})
 
 
 
@@ -35,7 +37,7 @@ def write_review():
 @app.route('/review', methods=['GET'])
 def read_reviews():
     # 1. DB에서 리뷰 정보 모두 가져오기
-    mynotes = list(db.mynote.find({}, {'_id': False}))
+    mynotes = list(db.mysystem.find({}, {'_id': False}))
     # 2. 성공 여부 & 리뷰 목록 반환하기
     return jsonify({'all_mynotes': mynotes})
 
