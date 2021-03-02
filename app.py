@@ -30,10 +30,6 @@ def write_review():
 
     return jsonify({'result' : 'success', 'msg': '예약 완료!'})
 
-
-
-
-
 @app.route('/review', methods=['GET'])
 def read_reviews():
     # 1. DB에서 리뷰 정보 모두 가져오기

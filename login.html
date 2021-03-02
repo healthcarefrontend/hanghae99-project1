@@ -19,7 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Numans');
+        /*@import url('https://fonts.googleapis.com/css?family=Numans');*/
         html, body {
             /*background-image: url('');*/
             background-size: cover;
@@ -142,7 +142,11 @@
             })
         }
 
-    </script>
+        function moveregister() {
+            location.href = "register.html"
+        }
+</script>
+
 
 </head>
 <div class="container">
@@ -167,13 +171,13 @@
                         <input type="password" class="form-control" id="userpw" placeholder="password">
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Login" class="btn float-right login_btn">
+                        <input type="submit" value="Login" class="btn float-right login_btn" onclick = "location.href = 'register.html' ">
                     </div>
                 </form>
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
-                    <a href="#">회원가입</a>
+                    <a href="register.html">회원가입</a>
                 </div>
             </div>
         </div>
