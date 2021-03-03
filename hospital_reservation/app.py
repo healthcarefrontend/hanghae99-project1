@@ -1,14 +1,13 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for
-
-app = Flask(__name__)
-
+from pymongo import MongoClient
 import jwt
 import datetime
 import hashlib
+from flask import Flask, render_template, jsonify, request, redirect, url_for
 from datetime import datetime, timedelta
 
-from pymongo import MongoClient
+app = Flask(__name__)
 
+SECRET_KEY = 'SPARTA'
 client = MongoClient('localhost', 27017)
 db = client.dbsparta
 
@@ -135,7 +134,7 @@ def sign_up():
 
 
 ###################################################################################
-###############################유훈님 코드###################################
+###############################힘찬님 코드###################################
 @app.route('/sign_in', methods=['POST'])
 def sign_in():
     # 로그인

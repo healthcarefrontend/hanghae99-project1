@@ -72,7 +72,6 @@
         input:focus {
             outline: 0 0 0 0 !important;
             box-shadow: 0 0 0 0 !important;
-
         }
 
         .remember input {
@@ -116,16 +115,18 @@
             let password = $("#user_pw").val()
 
             if (username == "") {
-                $("#help-id-login").text("아이디를 입력해주세요.")
-                $("#user_id").focus()
+                alert("아이디를 입력하세요!")
+                // $("#help-id-login").text("아이디를 입력해주세요.")
+                // $("#user_id").focus()
                 return;
             } else {
                 $("#help-id-login").text("")
             }
 
             if (password == "") {
-                $("#help-password-login").text("비밀번호를 입력해주세요.")
-                $("#user_pw").focus()
+                alert("비밀번호를 입력하세요!")
+                // $("#help-password-login").text("비밀번호를 입력해주세요.")
+                // $("#user_pw").focus()
                 return;
             } else {
                 $("#help-password-login").text("")
@@ -166,8 +167,6 @@
                         </div>
                         <input type="text" class="form-control" id="user_id" placeholder="username">
 
-
-
                     </div>
                     <div>
                         <p id="help-id-login" class="help is-danger"></p>
@@ -186,7 +185,7 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
-                    <a href="register.html">회원가입</a>
+                    <a href="http://localhost:5000/reg">회원가입</a>
                 </div>
             </div>
         </div>
