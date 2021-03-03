@@ -45,7 +45,7 @@ def write_review():
         'num': num_receive,
         'extra': extra_receive
     }
-    db.users.insert_one(doc)
+    db.mysystem.insert_one(doc)
 
     return jsonify({'result': 'success', 'msg': '예약 완료!'})
 
@@ -57,7 +57,7 @@ def write_review():
 
 @app.route('/review', methods=['GET'])
 def read_reviews():
-    mynotes = list(db.users.find({}, {'_id': False}))
+    mynotes = list(db.mysystem.find({}, {'_id': False}))
     return jsonify({'all_mynotes': mynotes})
 
 
@@ -70,15 +70,15 @@ def check_dup2():
     num_receive = request.form['num_give']
     addr_receive = request.form['addr_give']
 
-    # exists = bool(db.users.find({
+    # exists = bool(db.mysystem.find({
     #                                     '$ and' :[
     #                                         {"addr": addr_receive}, {"num": num_receive}
     #                                     ]
     #                                 }))
 
-    exists = bool(db.users.find_one({"addr": addr_receive, "num": num_receive}))
+    exists = bool(db.mysystem.find_one({"addr": addr_receive, "num": num_receive}))
 
-    # exists = bool(db.users.find_one({"num": num_receive}))
+    # exists = bool(db.mysystem.find_one({"num": num_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
 
