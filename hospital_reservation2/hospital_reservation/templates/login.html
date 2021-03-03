@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <title>Title</title>
+
+    <script>
+
+        function sign_in() {
+            let username = $("#user_id").val()
+            let password = $("#user_pw").val()
+
+            if (username == "") {
+                alert("아이디를 입력하세요!")
+                // $("#help-id-login").text("아이디를 입력해주세요.")
+                // $("#user_id").focus()
+                return;
+            } else {
+                $("#help-id-login").text("")
+            }
+
+            if (password == "") {
+                alert("비밀번호를 입력하세요!")
+                // $("#help-password-login").text("비밀번호를 입력해주세요.")
+                // $("#user_pw").focus()
+                return;
+            } else {
+                $("#help-password-login").text("")
+            }
+            $.ajax({
+                type: "POST",
+                url: "/sign_in",
+                data: {
+                    user_id_give: username,
+                    user_pw_give: password
+                },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        $.cookie('mytoken', response['token'], {path: '/'});
+                        window.location.replace("/")
+                    } else {
+                        alert(response['msg'])
+                    }
+                }
+            });
+        }
+
+    </script>
+
+</head>
+<body>
+   <body>
+        <div class="section has-text-centered">
+            <h1 class="title">로그인 페이지</h1>
+            <div class="container" style="width:60%">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="userid">ID</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input type="text" class="input" id="user_id" aria-describedby="emailHelp"
+                                       placeholder="My ID">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="userpw">PW</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input type="password" class="input" id="user_pw" placeholder="My Password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="button is-primary" onclick="sign_in()">로그인</button>
+            </div>
+        </div>
+        <a href="http://localhost:5000/reg">회원가입</a>
+    </body>
+</html>
+</body>
+</html>
