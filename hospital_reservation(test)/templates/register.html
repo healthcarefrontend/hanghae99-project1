@@ -58,6 +58,12 @@
             width: 100px;
             display: block;
         }
+        .alert-light {
+            width : 900px;
+            margin : 0px 0px 0px 20px;
+            padding : 0px 0px 0px 20px;
+            font-size : 15px;
+        }
 
     </style>
 
@@ -178,12 +184,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">아이디</span>
                 </div>
-                <input  id="user_id" type="text" class="form-control" aria-label="Default"
+                <input id="user_id" type="text" class="form-control" aria-label="Default"
                        aria-describedby="inputGroup-sizing-default"
                        placeholder="영문/숫자, 일부 특수문자 사용가능, 2-10자 길이로 영문을 무조건 포함해야 합니다">
                 <button onclick="check_dup()" type="button" class="btn btn-warning">중복확인</button>
             </div>
-            <div><input id="help_id" type="text" placeholder="헬프 아이디"></div>
+            <div id="help_id" class="alert-light" role="alert">아이디 입력형식에 오류가 있음</div>
+
+
 
             <div class="input-group mb-3">
                 <div class="input-group mb-3">
@@ -193,7 +201,7 @@
                     <input type="password" class="form-control" id="user_pw"
                            placeholder="영문,숫자는 1개씩 무조건 포함, 일부 특수문자 사용가능, 8-20자 길이로 설정합니다">
                 </div>
-                <div><input id="help_pw" type="text" placeholder="헬프 패스워드"></div>
+                <div id="help_pw" class="alert-light" role="alert">패스워드 입력형식에 오류가 있음</div>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group mb-3">
@@ -203,7 +211,7 @@
                     <input type="password" class="form-control" id="user_pw2"
                            placeholder="패스워드를 다시 한번 입력해주세요">
                 </div>
-                <div><input id="help_pw2" type="text" placeholder="헬프 패스워드2"></div>
+                <div id="help_pw2" class="alert-light" role="alert">패스워드 다시 입력형식에 오류가 있음</div>
             </div>
         </div>
     </div>
@@ -213,7 +221,6 @@
     </div>
 </div>
 </body>
-
 
 
 </html>
