@@ -156,7 +156,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/sign_up/check_dup",
+            url: "/sign_up/check_dup2",
             data: {
                 num_give: num,
                 addr_give : addr
@@ -217,7 +217,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text">진료시간</span>
         </div>
-        <select onclick="check_dup()" class="custom-select" id="order-num">
+        <select onclick="check_dup2()" class="custom-select" id="order-num">
             <option selected >-- 진료 희망 시간 --</option>
             <option value="오전 10:00~12:00">오전 10:00~12:00</option>
             <option value="오후 13:00~15:00">오후 13:00~15:00</option>

@@ -65,7 +65,7 @@ def read_reviews():
 ###########  진료시간 예약 중복체크 API (총명)
 ###########################################################
 
-@app.route('/sign_up/check_dup', methods=['POST'])
+@app.route('/sign_up/check_dup2', methods=['POST'])
 def check_dup2():
     num_receive = request.form['num_give']
     addr_receive = request.form['addr_give']
