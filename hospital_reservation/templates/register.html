@@ -50,6 +50,7 @@
         .join2 {
             margin: 30px;
 
+
         }
 
         .btn-order {
@@ -75,6 +76,7 @@
         ///ID중복확인
         function check_dup() {
             let user_id = $("#user_id").val()
+            console.log(user_id)
             if (user_id == "") {
                 $("#help_id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
                 $("#user_id ").focus()
@@ -86,7 +88,6 @@
                 return;
             }
             $("#help_id").addClass("is-loading")
-
             // DB에 USER_id와 동일한 ID 있는지 확인요청
             $.ajax({
                 type: "POST",
@@ -113,6 +114,7 @@
             let user_id = $("#user_id").val()
             let password = $("#user_pw").val()
             let password2 = $("#user_pw2").val()
+            console.log(user_id, password, password2)
 
             if ($("#help_id").hasClass("is-danger")) {
                 alert("아이디를 다시 확인해주세요.")
@@ -151,7 +153,7 @@
                 url: "/sign_up/save",
                 data: {
                     user_id_give: user_id,
-                    User_pw_give: user_pw
+                    user_pw_give: password
                 },
                 success: function (response) {
                     alert("회원가입을 축하드립니다!")
@@ -176,7 +178,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">아이디</span>
                 </div>
-                <input id="user_id" type="text" class="form-control" aria-label="Default"
+                <input  id="user_id" type="text" class="form-control" aria-label="Default"
                        aria-describedby="inputGroup-sizing-default"
                        placeholder="영문/숫자, 일부 특수문자 사용가능, 2-10자 길이로 영문을 무조건 포함해야 합니다">
                 <button onclick="check_dup()" type="button" class="btn btn-warning">중복확인</button>
@@ -211,6 +213,7 @@
     </div>
 </div>
 </body>
+
 
 
 </html>

@@ -6,8 +6,8 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
-
 SECRET_KEY = 'SPARTA'
+from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client.dbsparta
 
@@ -82,6 +82,8 @@ def check_dup2():
     return jsonify({'result': 'success', 'exists': exists})
 
 
+
+
 ###################################################################################
 ###############################유훈님 코드###################################
 
@@ -94,7 +96,8 @@ def check_dup2():
 def check_dup():
     user_id_receive = request.form['user_id_give']
     exists = bool(db.users.find_one({"id_receive": user_id_receive}))
-    return jsonify({'result': 'success', 'exists': 'exist'})
+    return jsonify({'result': 'success', 'exists': exists})
+
 
 
 ####회원가입 시 서버단 API#######################################
@@ -120,8 +123,8 @@ def sign_up():
 @app.route('/sign_in', methods=['POST'])
 def sign_in():
     # 로그인
-    username_receive = request.form['username_give']
-    password_receive = request.form['password_give']
+    username_receive = request.form['user_id_give']
+    password_receive = request.form['user_pw_give']
 
     pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     result = db.users.find_one({'id': username_receive, 'pw': pw_hash})

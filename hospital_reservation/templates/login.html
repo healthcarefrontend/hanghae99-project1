@@ -135,13 +135,13 @@
                 type: "POST",
                 url: "/sign_in",
                 data: {
-                    username_give: username,
-                    password_give: password
+                    user_id_give: username,
+                    user_pw_give: password
                 },
                 success: function (response) {
                     if (response['result'] == 'success') {
                         $.cookie('mytoken', response['token'], {path: '/'});
-                        window.location.replace("/")
+                        window.location.replace("/index")
                     } else {
                         alert(response['msg'])
                     }
