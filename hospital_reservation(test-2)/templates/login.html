@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <title>Title</title>
+
 
     <script>
 
@@ -50,41 +55,48 @@
 
     </script>
 
+    <style>
+        .wrap {
+            width: 300px;
+            margin: auto;
+        }
+    </style
 </head>
 <body>
-   <body>
-        <div class="section has-text-centered">
-            <h1 class="title">로그인 페이지</h1>
-            <div class="container" style="width:60%">
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="user_id">ID</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <input type="text" class="input" id="user_id" aria-describedby="emailHelp"
-                                       placeholder="My ID">
-                            </div>
-                        </div>
+<div class="section has-text-centered">
+    <h1 class="title">스파르타 병원</h1>
+    <div class="container" style="width:28%">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label" for="user_id">ID</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input type="text" class="input" id="user_id" aria-describedby="emailHelp"
+                               placeholder="My ID">
                     </div>
                 </div>
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="user_pw">PW</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <input type="password" class="input" id="user_pw" placeholder="My Password">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="button is-primary" onclick="sign_in()">로그인</button>
             </div>
         </div>
-        <a href="http://localhost:5000/reg">회원가입</a>
-    </body>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label" for="user_pw">PW</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input type="password" class="input" id="user_pw" placeholder="My Password">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="button is-info" onclick="sign_in()">로그인</button>
+        <div>
+            <a href="http://localhost:5000/reg">회원가입</a>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
