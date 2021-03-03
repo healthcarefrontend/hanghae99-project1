@@ -45,7 +45,7 @@ def write_review():
         'num': num_receive,
         'extra': extra_receive
     }
-    db.mysystem.insert_one(doc)
+    db.users.insert_one(doc)
 
     return jsonify({'result': 'success', 'msg': '예약 완료!'})
 
@@ -57,7 +57,7 @@ def write_review():
 
 @app.route('/review', methods=['GET'])
 def read_reviews():
-    mynotes = list(db.mysystem.find({}, {'_id': False}))
+    mynotes = list(db.users.find({}, {'_id': False}))
     return jsonify({'all_mynotes': mynotes})
 
 
@@ -70,38 +70,20 @@ def check_dup2():
     num_receive = request.form['num_give']
     addr_receive = request.form['addr_give']
 
-    # exists = bool(db.mysystem.find({
+    # exists = bool(db.users.find({
     #                                     '$ and' :[
     #                                         {"addr": addr_receive}, {"num": num_receive}
     #                                     ]
     #                                 }))
 
-    exists = bool(db.mysystem.find_one({"addr": addr_receive, "num": num_receive}))
+    exists = bool(db.users.find_one({"addr": addr_receive, "num": num_receive}))
 
-    # exists = bool(db.mysystem.find_one({"num": num_receive}))
+    # exists = bool(db.users.find_one({"num": num_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
 
 ###################################################################################
 ###############################유훈님 코드###################################
-
-####### 회원가입에서 전달한 정보 받는 API####################
-########################################################
-########################################################
-
-@app.route('/api/register', methods=['POST'])
-def api_register():
-    id_receive = request.form['id_give']
-    pw_receive = request.form['pw_give']
-
-    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
-
-    doc = {
-        'id': id_receive,
-        'pw': pw_receive
-    }
-    db.mysystem.insert_one(doc)  # db를 users에 insert 함. (doc를 - 생성된 딕셔너리)
-    return jsonify({'result': 'success', 'msg': '회원가입 실패'})
 
 
 ####### id중복확인 서버단 API#############################
@@ -111,7 +93,7 @@ def api_register():
 @app.route('/sign_up/check_dup', methods=['POST'])
 def check_dup():
     user_id_receive = request.form['user_id_give']
-    exists = bool(db.mysystem.find_one({"id_receive": user_id_receive}))
+    exists = bool(db.users.find_one({"id_receive": user_id_receive}))
     return jsonify({'result': 'success', 'exists': 'exist'})
 
 
@@ -129,7 +111,7 @@ def sign_up():
         "id": username_receive,  # 아이디
         "pw": password_hash,  # 비밀번호
     }
-    db.mysystem.insert_one(doc)
+    db.users.insert_one(doc)
     return jsonify({'result': 'success'})
 
 
