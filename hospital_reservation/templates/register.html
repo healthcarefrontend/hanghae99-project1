@@ -49,7 +49,6 @@
 
         .join2 {
             margin: 30px;
-            auto;
 
         }
 
@@ -94,7 +93,7 @@
                 url: "/sign_up/check_dup",
                 data: {
                     user_id_give: user_id
-                }
+                },
                 success: function (response) {
 
                     if (response["exists"]) {
@@ -177,7 +176,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">아이디</span>
                 </div>
-                <input  id="user_id" type="text" class="form-control" aria-label="Default"
+                <input id="user_id" type="text" class="form-control" aria-label="Default"
                        aria-describedby="inputGroup-sizing-default"
                        placeholder="영문/숫자, 일부 특수문자 사용가능, 2-10자 길이로 영문을 무조건 포함해야 합니다">
                 <button onclick="check_dup()" type="button" class="btn btn-warning">중복확인</button>
@@ -210,8 +209,8 @@
     <div class="join2">
         <button type="button" onclick="sign_up()" class="btn btn-primary btn-order">회원가입</button>
     </div>
+</div>
 </body>
-
 
 
 </html>
