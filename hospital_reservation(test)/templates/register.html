@@ -106,10 +106,7 @@
                     if (response["exists"]) {
                         $("#help_id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
                         $("#user_id ").focus()
-                    } else {
-                        $("#help_id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
-                    }
-                    $("#help_id").removeClass("is-loading")
+               loading")
 
                 }
             });
@@ -135,7 +132,7 @@
                 $("#user_pw").focus()
                 return;
             } else if (!is_password(password)) {
-                $("#help_pw").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
+                $("#help_pw").자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
                 $("#user_pw").focus()
                 return
             } else {
