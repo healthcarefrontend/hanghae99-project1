@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <title>스파르타 종합병원</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <script>
+
+        function sign_in() {
+            let username = $("#user_id").val()
+            let password = $("#user_pw").val()
+
+            if (username == "") {
+                alert("아이디를 입력하세요!")
+                // $("#help-id-login").text("아이디를 입력해주세요.")
+                // $("#user_id").focus()
+                return;
+            } else {
+                $("#help-id-login").text("")
+            }
+
+            if (password == "") {
+                alert("비밀번호를 입력하세요!")
+                // $("#help-password-login").text("비밀번호를 입력해주세요.")
+                // $("#user_pw").focus()
+                return;
+            } else {
+                $("#help-password-login").text("")
+            }
+            $.ajax({
+                type: "POST",
+                url: "/sign_in2",
+                data: {
+                    user_id_give: username,
+                    user_pw_give: password
+                },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        $.cookie('mytoken', response['token'], {path: '/'});
+                        window.location.replace("/")
+                    } else {
+                        alert(response['msg'])
+                    }
+                }
+            });
+        }
+
+    </script>
+
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+            padding: 0;
+            margin : 0;
+        }
+
+        /*
+        .banner {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            background-color: floralwhite;
+            overflow: hidden;
+            background-color: pink;
+            margin-top : 30px;
+            margin-bottom : 30px;
+        }
+
+        .banner > div {
+            width : 814px;
+            height : 304px;
+            background-color : #ececec;
+            overflow: hidden;
+            margin : 0px auto;
+        }
+
+        .chefs>div>p>span{
+            float : left;
+            width : 500px;
+            line-height: 26px;
+            margin-top : 80px;
+            background-color: yellow;
+        }
+
+        .chefs > div > p > span{
+            font-size : 26px;
+            font-weight: 600;
+        }
+
+        */
+
+        .footer{
+            position: fixed;
+            bottom : 0;
+            height : 10%;
+            width : 100%
+        }
+        .wrap {
+            margin: auto;
+            width: 500px;
+            padding-top: 20px;
+            text-align: center;
+            border-style: solid;
+            border-color: lightsteelblue;
+            border-width: thick;
+            border-radius: 50px 50px 50px 50px;
+        }
+
+        .wrap2 {
+            margin: auto;
+            width: 500px;
+        }
+
+        .mytitle {
+            width: 400px;
+            height: 350px;
+            margin: auto;
+            /*color: white;*/
+            /*text-align: center;*/
+
+            background-image: url("https://img.freepik.com/free-vector/people-walking-sitting-hospital-building-city-clinic-glass-exterior-flat-vector-illustration-medical-help-emergency-architecture-healthcare-concept_74855-10130.jpg?size=626&ext=jpg&ga=GA1.2.1587176078.1612828800");
+            background-size: cover;
+            background-position: center;
+            background-color: deepskyblue;
+            border-radius: 10px;
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .buttonheight {
+            padding-top: 20px;
+            padding-left: 5px;
+        }
+
+        .sighin {
+            padding-bottom: 20px;
+        }
+
+        .fontsize {
+            font-size: 20px;
+        }
+
+        .fontadd {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .footer {
+            padding-top: 110px;
+        }
+    </style>
+</head>
+<body>
+<div class="mytitle"></div>
+<div class="wrap ">
+    <h1 class="title is-size-2">스파르타 종합병원</h1>
+    <div class="container" style="width:55%">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label is-size-5" for="user_id">ID</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input type="text" class="input is-size-5" id="user_id" aria-describedby="emailHelp"
+                               placeholder="My ID">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label is-size-5" for="user_pw">PW</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input type="password" class="input is-size-5" id="user_pw" placeholder="My Password">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttonheight">
+            <button class="button is-info is-size-5 fontadd" onclick="sign_in()">로그인</button>
+        </div>
+    </div>
+    <div class="wrap2 sighin">
+        <hr>
+        <a class="is-size-6" href="http://localhost:5000/reg">회원가입</a></hr>
+
+    </div>
+</div>
+
+<footer class="footer">
+        <div class="ban">
+            <div class="content has-text-centered fontsize">
+                <p>
+                    <strong>스파르타 종합병원</strong> by <strong style="color: slateblue"> 18조 김힘찬 박유훈 이총명</strong>. 웹개발 미니 프로젝트
+                    <a href="https://hanghae99.spartacodingclub.kr/">스파르타 코딩클럽 항해99</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

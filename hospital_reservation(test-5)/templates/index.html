@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>병원 예약 포털</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Poor+Story&family=Single+Day&display=swap"
+          rel="stylesheet">
+</head>
+<style>
+
+
+    * {
+        font-family: 'Do Hyeon', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer{
+            position: fixed;
+            bottom : 0;
+            height : 4px;
+            width : 100%
+        }
+
+    a {
+        text-decoration: none;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    img {
+        display: block;
+        border: none;
+    }
+
+    body {
+        line-height: 28px;
+    }
+
+    #header {
+        width: 100%;
+        height: 130px;
+        overflow: hidden;
+        background-color: aliceblue;
+        text-align: center;
+        font-size: 26px;
+    }
+
+    #header > ul {
+        display: inline-block;
+        height: 53px;
+
+        overflow: hidden;
+        margin-top: 33px;
+    }
+
+    #header > ul > li {
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+        line-height: 30px;
+
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 27px;
+    }
+
+    #header > ul > li > a {
+        color: #000000;
+    }
+
+    #header > ul > li:hover {
+        text-decoration: underline;
+    }
+
+    #header > ul > li:hover a {
+        color: red;
+    }
+
+    #header > ul > li:nth-child(4) {
+        margin-left: 70px;
+        margin-right: 70px;
+
+    }
+
+
+    .reviews {
+        width: 600px;
+        margin: 50px auto 0px auto;
+    }
+
+    .wrap {
+        border: 4px solid black;
+        border-radius: 10px;
+        padding: 35px;
+        width: 600px;
+        margin: auto;
+        background-color: whitesmoke;
+    }
+
+    .wrap2{
+        background-color: white;
+    }
+
+    #main_picture{
+        padding : 20px;
+        width : 100%;
+        height : 920px;
+        overflow : hidden;
+        background-color : snow;
+        background-repeat : no-repeat;
+        background-attachment: scroll;
+        background-size : 100% 464px;
+        -webkit-box-shadow: inset 3px 2px 25px 10px rgba(0,0,0,0.1);
+        box-shadow: inset 3px 2px 25px 10px rgba(0,0,0,0.1);
+    }
+
+    .image {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_the_Red_Cross.png/1280px-Flag_of_the_Red_Cross.png");
+        height: 300px;
+        width: 500px;
+        margin: 10px auto 30px auto;
+        border-radius: 20px;
+        background-position: center;
+        background-size: cover;
+
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .done {
+        border: 1px solid cornflowerblue;
+        border-radius: 16px;
+        box-shadow: inset 0 0 8px cornflowerblue;
+    }
+
+    .last {
+        color: slateblue;
+        margin-top: -10px;
+        margin-bottom: 10px;
+        text-align: right;
+
+    }
+
+    .movie{
+        width : 700px;
+        height : 500px;
+        border : 2px solid gray;
+        background-color: darkslateblue;
+        position: relative;
+    }
+
+    .button{
+        width : 120px;
+        height: 120px;
+        line-height: 120px;
+        border-radius: 120px;
+        text-align: center;
+        border : none;
+        font-size : 30px;
+        background-color: antiquewhite;
+        position: absolute;
+    }
+
+    .prev{
+        top : 50%;
+        left : 10px;
+    }
+
+    .next{
+        top : 50%;
+        right : 10px;
+    }
+
+    .play{
+        top : 50%;
+        left : 50%;
+    }
+
+
+</style>
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "https://api.manana.kr/exchange/rate.json",
+            data: {},
+            success: function (response) {
+                let now_rate = response[1]['rate']
+
+                $('#add').text(now_rate);
+            }
+        })
+
+        $("#reviews-box").html("");
+        //showReview();
+    });
+
+
+    function makeReview() {
+        let name = $('#order-name').val()
+        let count = $('#order-count').val()
+        let addr = $('#order-addr').val()
+        let num = $('#order-num').val()
+        let extra = $('#order-extra').val()
+
+        if (name == "" || count == "-- 진료 희망과를 선택하세요 --" || addr == "" || num == "-- 진료 희망 시간 --" || extra == "") {
+            alert("필수입력란을 입력하세요!")
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/review",
+            data: {name_give: name, count_give: count, addr_give: addr, num_give: num, extra_give: extra},
+            success: function (response) {
+                alert(response["msg"]);
+                window.location.reload();   // 새로고침, refresh
+            }
+        })
+    }
+
+    function showReview() {
+        $.ajax({
+            type: "GET",
+            url: "/review",
+            data: {},
+            success: function (response) {
+                let mynotes = response['all_mynotes']
+                for (let i = 0; i < mynotes.length; i++) {
+                    let name = mynotes[i]['name']
+                    let count = mynotes[i]['count']
+                    let addr = mynotes[i]['addr']
+                    let num = mynotes[i]['num']
+                    let extra = mynotes[i]['extra']
+
+                    let temp_html = `<tr>
+                                                <td>${name}</td>
+                                                <td>${count}</td>
+                                                <td>${addr}</td>
+                                                <td>${num}</td>
+                                                <td>${extra}</td>
+                                            </tr>`
+                    $('#reviews-box').append(temp_html)
+                }
+            }
+        })
+    }
+
+    function check_dup2() {
+
+        let num = $('#order-num').val()
+        let addr = $('#order-addr').val()
+
+        $.ajax({
+            type: "POST",
+            url: "/sign_up/check_dup2",
+            data: {
+                num_give: num,
+                addr_give: addr
+            },
+            success: function (response) {
+                if (response["exists"]) {
+                    $("#makeReview").text("예약이 불가능합니다. 다른 시간을 선택해주세요!").removeClass("is-safe").addClass("is-danger")
+                    $("#input-username").focus()
+                } else {
+                    $("#makeReview").text("예약 가능한 시간입니다.").removeClass("is-danger").addClass("is-success")
+                }
+                $("#makeReview").removeClass("is-loading")
+
+            }
+        });
+    }
+
+</script>
+
+<body>
+<div id="header">
+    <ul>
+        <li><a href="#">진료과 의료진</a></li>
+        <li><a href="#">진료카드</a></li>
+        <li><a href="#">나의 스케쥴</a></li>
+        <li><img src=""></li>
+        <li><a href="#">진료이력 조회</a></li>
+        <li><a href="#">복용약 안내</a></li>
+        <li><a href="#">스마트 결제</a></li>
+    </ul>
+</div>
+<div id="main_picture" class="wrap2" >
+
+    <div class="wrap">
+
+        <div class="image">
+
+        </div>
+        <h1>스파르타 종합병원 예약 시스템.</h1>
+        <p style="color: dodgerblue">진료 예약은 최소한 7일 이상 여유를 두고 신청하시기 바랍니다.</p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">성함</span>
+            </div>
+            <input id="order-name" type="text" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text">진료과</label>
+            </div>
+            <select class="custom-select" id="order-count">
+                <option selected>-- 진료 희망과를 선택하세요 --</option>
+                <option value="내과">내과</option>
+                <option value="외과">외과</option>
+                <option value="정형외과">정형외과</option>
+                <option value="피부과">피부과</option>
+                <option value="신경외과">신경외과</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">진료일</span>
+
+            </div>
+            <input id="order-addr" type="date" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
+
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">진료시간</span>
+            </div>
+            <select onclick="check_dup2()" class="custom-select" id="order-num">
+                <option selected>-- 진료 희망 시간 --</option>
+                <option value="오전 10:00~12:00">오전 10:00~12:00</option>
+                <option value="오후 13:00~15:00">오후 13:00~15:00</option>
+                <option value="오후 15:00~17:00">오후 15:00~17:00</option>
+                <option value="야간 19:00~21:00">오후 19:00~21:00</option>
+
+            </select>
+
+        </div>
+        <p id="makeReview" class="last"> 예약은 조기 마감될 수 있는점 참고바랍니다.</p>
+        <div class="input-group">
+            <div class="input-group-prepend ">
+                <span class="input-group-text">추가 기재 사항</span>
+            </div>
+            <textarea id="order-extra" class="form-control" aria-label="With textarea"></textarea>
+        </div>
+        <button onclick="makeReview()" type="button" class="btn-secondary btn-lg btn-block bg-info">
+            예약하기
+        </button>
+
+
+    </div>
+</div>
+
+<div class="reviews">
+
+    <table class="table table-striped table-blue" class="done">
+        <thead>
+        <tr class="table-primary">
+            <th scope="col">이름</th>
+            <th scope="col">진료과</th>
+            <th scope="col">진료일</th>
+            <th scope="col">진료시간</th>
+            <th scope="col">추가기재사항</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in mynotes %}
+            {% set name = row["name"] %}
+            {% set count = row["count"] %}
+            {% set addr = row["addr"] %}
+            {% set num = row["num"] %}
+            {% set extra = row["extra"] %}
+
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ count }}</td>
+                <td>{{ addr }}</td>
+                <td>{{ num }}</td>
+                <td>{{ extra }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+        <tfood id="reviews-box">
+
+        </tfood>
+    </table>
+</div>
+
+<footer class="footer">
+        <div class="ban">
+            <div class="content has-text-centered fontsize">
+                <p>
+                    <strong>스파르타 종합병원</strong> by <strong style="color: slateblue"> 18조 김힘찬 박유훈 이총명</strong>. 웹개발 미니 프로젝트
+                    <a href="https://hanghae99.spartacodingclub.kr/">스파르타 코딩클럽 항해99</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

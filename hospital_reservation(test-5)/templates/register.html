@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>회원가입</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .wrap {
+            width: 700px;
+            margin: auto;
+            padding-top: 0px;
+            line-height: 70px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            height: 4px;
+            width: 100%
+        }
+
+
+        .title1 {
+            width: 700px;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .join1 {
+            width: 700px;
+            margin: auto;
+        {#border: darkseagreen solid;#}{#border-radius: 5px;#}{#border-width: thick;#}{#/*border-radius: 50px 50px 50px 50px;*/#}
+
+        }
+
+        .join2 {
+            margin: 30px;
+
+
+        }
+
+        .btn-order {
+            margin: auto;
+            width: 100px;
+            display: block;
+        }
+
+        .alert-light {
+            width: 900px;
+            margin: -30px 0px 0px 20px;
+            padding: 0px 0px 0px 20px;
+            font-size: 15px;
+        }
+
+        .footeradd {
+        {#padding-top: 30px;#}
+        }
+
+        .fontsize {
+            font-size: 20px;
+        }
+
+        .titleimg {
+            width: 350px;
+            height: 350px;
+            margin: auto;
+            background-image: url("https://lh3.googleusercontent.com/proxy/T4CtMgBiWOoRw6PIWe3Kp9qkuQJz1bTZfcBQ6gcMKVeSSYwqeeF4OOOQy5rW--FI7z_1N-Ey3mDGT0ntHRkgNQWo-jty7Y5SUkFlDXYWI3W9rQCFzM3b");
+            background-size: cover;
+            background-position: center;
+            background-color: aqua;
+            margin-bottom : 20px
+        }
+
+
+    </style>
+
+    <script>
+        //정규표현식
+        function is_nickname(asValue) {
+            var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/; //
+            return regExp.test(asValue);
+        }
+
+        function is_password(asValue) {
+            var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+            return regExp.test(asValue);
+        }
+
+        ///ID중복확인
+        function check_dup() {
+            let user_id = $("#user_id").val()
+            console.log(user_id)
+            if (user_id == "") {
+                $("#help_id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#user_id ").focus()
+                return;
+            }
+            if (!is_nickname(user_id)) {
+                $("#help_id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+                $("#user_id").focus()
+                return;
+            }
+            $("#help_id").addClass("is-loading")
+            // DB에 USER_id와 동일한 ID 있는지 확인요청
+            $.ajax({
+                type: "POST",
+                url: "/sign_up/check_dup",
+                data: {
+                    user_id_give: user_id
+                },
+                success: function (response) {
+
+                    if (response["exists"]) {
+                        $("#help_id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
+                        $("#user_id ").focus()
+                    } else {
+                        $("#help_id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
+                    }
+                    $("#help_id").removeClass("is-loading")
+
+                }
+            });
+        }
+
+        ///회원가입
+        function sign_up() {
+            let user_id = $("#user_id").val()
+            let password = $("#user_pw").val()
+            let password2 = $("#user_pw2").val()
+            console.log(user_id, password, password2)
+
+            if ($("#help_id").hasClass("is-danger")) {
+                alert("아이디를 다시 확인해주세요.")
+                return;
+            } else if (!$("#help_id").hasClass("is-success")) {
+                alert("아이디 중복확인을 해주세요.")
+                return;
+            }
+
+            if (password == "") {
+                $("#help_pw").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#user_pw").focus()
+                return;
+            } else if (!is_password(password)) {
+                $("#help_pw").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
+                $("#user_pw").focus()
+                return
+            } else {
+                $("#help_pw").text("사용할 수 있는 비밀번호입니다.").removeClass("is-danger").addClass("is-success")
+            }
+            if (password2 == "") {
+                $("#help_pw2").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#user_pw2").focus()
+                return
+            } else if (password2 != password) {
+                $("#help_pw2").text("비밀번호가 일치하지 않습니다.").removeClass("is-safe").addClass("is-danger")
+                $("#user_pw2").focus()
+                return;
+            } else {
+                $("#help_pw2").text("비밀번호가 일치합니다.").removeClass("is-danger").addClass("is-success")
+            }
+            /////// 이정보로 회원가입할게 서버로 요청
+            ////////////////////////////////////
+            $.ajax({
+                type: "POST",
+                url: "/sign_up/save",
+                data: {
+                    user_id_give: user_id,
+                    user_pw_give: password
+                },
+                success: function (response) {
+                    alert("회원가입을 축하드립니다!")
+                    window.location.replace("/login")
+                }
+            });
+
+        }
+
+    </script>
+</head>
+
+<body>
+<div class="titleimg"></div>
+<div class="wrap">
+
+    <div class="join1">
+        <div class="input-group mb-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">아이디</span>
+                </div>
+                <input id="user_id" type="text" class="form-control" aria-label="Default"
+                       aria-describedby="inputGroup-sizing-default"
+                       placeholder="영문/숫자, 일부 특수문자 사용가능, 2-10자 길이로 영문을 무조건 포함해야 합니다">
+                <button onclick="check_dup()" type="button" class="btn btn-warning">중복확인</button>
+            </div>
+            <div id="help_id" class="alert-light" role="alert">아이디 입력형식에 오류가 있음</div>
+
+
+            <div class="input-group mb-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">패스워드</span>
+                    </div>
+                    <input type="password" class="form-control" id="user_pw"
+                           placeholder="영문,숫자는 1개씩 무조건 포함, 일부 특수문자 사용가능, 8-20자 길이로 설정합니다">
+                </div>
+                <div id="help_pw" class="alert-light" role="alert">패스워드 입력형식에 오류가 있음</div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">패스워드 확인</span>
+                    </div>
+                    <input type="password" class="form-control" id="user_pw2"
+                           placeholder="패스워드를 다시 한번 입력해주세요">
+                </div>
+                <div id="help_pw2" class="alert-light" role="alert">패스워드 다시 입력형식에 오류가 있음</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="join2">
+        <button type="button" onclick="sign_up()" class="btn btn-primary btn-order">회원가입</button>
+    </div>
+</div>
+
+<div class="footeradd fontsize footer">
+    <footer class="footer">
+        <div class="ban">
+            <div class="content has-text-centered fontsize">
+                <p>
+                    <strong>스파르타 종합병원</strong> by <strong style="color: slateblue"> 18조 김힘찬 박유훈 이총명</strong>. 웹개발 미니 프로젝트
+                    <a href="https://hanghae99.spartacodingclub.kr/">스파르타 코딩클럽 항해99</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+
+
+</html>
