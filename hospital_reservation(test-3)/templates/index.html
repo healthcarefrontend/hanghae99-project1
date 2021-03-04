@@ -20,7 +20,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
-    <title>병원 예약 포털</title>
+    <title>스파르타 병원 예약 포털</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Poor+Story&family=Single+Day&display=swap"
           rel="stylesheet">
@@ -29,7 +29,73 @@
 
     * {
         font-family: 'Do Hyeon', sans-serif;
+        margin: 0;
+        padding: 0;
     }
+
+    a {
+        text-decoration: none;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    img {
+        display: block;
+        border: none;
+    }
+
+    body {
+
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    #header {
+        width: 100%;
+        height: 120px;
+        overflow: hidden;
+        background-color: aliceblue;
+        text-align: center;
+        font-size: 26px;
+        margin-bottom: 0px;
+        font-family : 'Arial';
+    }
+
+    #header > ul {
+        display: inline-block;
+        height: 53px;
+        {#background-color: pink;#}
+        overflow: hidden;
+        margin-top: 33px;
+    }
+
+    #header > ul > li {
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+        line-height: 30px;
+        {#background-color: yellow;#}
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 27px;
+    }
+
+    #header > ul > li > a {
+        color: #000000;
+    }
+
+    #header > ul > li:hover a {
+        color: red;
+    }
+
+    #header > ul > li:nth-child(4) {
+        margin-left: 70px;
+        margin-right: 70px;
+        margin-top: 0px;
+    }
+
 
     .reviews {
         width: 600px;
@@ -69,9 +135,9 @@
         box-shadow: inset 0 0 8px cornflowerblue;
     }
 
-    .last{
-        color : slateblue;
-        margin-top : -10px;
+    .last {
+        color: slateblue;
+        margin-top: -10px;
         margin-bottom: 10px;
         text-align: right;
 
@@ -98,7 +164,6 @@
     });
 
 
-
     function makeReview() {
         let name = $('#order-name').val()
         let count = $('#order-count').val()
@@ -106,7 +171,7 @@
         let num = $('#order-num').val()
         let extra = $('#order-extra').val()
 
-        if (name == "" || count == "-- 진료 희망과를 선택하세요 --" || addr == "" || num == "-- 진료 희망 시간 --" || extra == ""){
+        if (name == "" || count == "-- 진료 희망과를 선택하세요 --" || addr == "" || num == "-- 진료 희망 시간 --" || extra == "") {
             alert("필수입력란을 입력하세요!")
             return;
         }
@@ -159,15 +224,15 @@
             url: "/sign_up/check_dup2",
             data: {
                 num_give: num,
-                addr_give : addr
+                addr_give: addr
             },
             success: function (response) {
                 if (response["exists"]) {
-                        $("#makeReview").text("예약이 불가능합니다. 다른 시간을 선택해주세요!").removeClass("is-safe").addClass("is-danger")
-                        $("#input-username").focus()
-                    } else {
-                        $("#makeReview").text("예약 가능한 시간입니다.").removeClass("is-danger").addClass("is-success")
-                    }
+                    $("#makeReview").text("예약이 불가능합니다. 다른 시간을 선택해주세요!").removeClass("is-safe").addClass("is-danger")
+                    $("#input-username").focus()
+                } else {
+                    $("#makeReview").text("예약 가능한 시간입니다.").removeClass("is-danger").addClass("is-success")
+                }
                 $("#makeReview").removeClass("is-loading")
 
             }
@@ -177,11 +242,28 @@
 </script>
 
 <body>
+<div id="header">
+    <ul>
+        <li><a href="#">진료과 의료진</a></li>
+        <li><a href="#">진료카드</a></li>
+        <li><a href="#">건강수첩</a></li>
+        <li><a href="#"><img src="static/logo2.png"></a></li>
+        <li><a href="#">진료 내역 조회</a></li>
+        <li><a href="#">처방약 조회</a></li>
+        <li><a href="#">찾아오시는 길</a></li>
+
+    </ul>
+</div>
+
 <div class="wrap">
     <div class="image">
 
     </div>
+<<<<<<< HEAD
     <h1>스파르타 종합병원 예약 시스템.</h1>
+=======
+    <h1>스파르타 병원 예약 시스템.</h1>
+>>>>>>> e61c3408de3c1a55b2c8c2119ffdce453523fba6
     <p style="color: dodgerblue">진료 예약은 최소한 7일 이상 여유를 두고 신청하시기 바랍니다.</p>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -218,7 +300,7 @@
             <span class="input-group-text">진료시간</span>
         </div>
         <select onclick="check_dup2()" class="custom-select" id="order-num">
-            <option selected >-- 진료 희망 시간 --</option>
+            <option selected>-- 진료 희망 시간 --</option>
             <option value="오전 10:00~12:00">오전 10:00~12:00</option>
             <option value="오후 13:00~15:00">오후 13:00~15:00</option>
             <option value="오후 15:00~17:00">오후 15:00~17:00</option>
@@ -234,10 +316,9 @@
         </div>
         <textarea id="order-extra" class="form-control" aria-label="With textarea"></textarea>
     </div>
-    <button onclick="makeReview()" type="button"  class="btn-secondary btn-lg btn-block bg-info">
+    <button onclick="makeReview()" type="button" class="btn-secondary btn-lg btn-block bg-info">
         예약하기
     </button>
-
 
 
 </div>
@@ -253,22 +334,22 @@
             <th scope="col">추가기재사항</th>
         </tr>
         </thead>
-        <tbody >
-            {% for row in mynotes %}
-                {% set name = row["name"] %}
-                {% set count = row["count"] %}
-                {% set addr = row["addr"] %}
-                {% set num = row["num"] %}
-                {% set extra = row["extra"] %}
+        <tbody>
+        {% for row in mynotes %}
+            {% set name = row["name"] %}
+            {% set count = row["count"] %}
+            {% set addr = row["addr"] %}
+            {% set num = row["num"] %}
+            {% set extra = row["extra"] %}
 
-                <tr>
-                    <td>{{name}}</td>
-                    <td>{{count}}</td>
-                    <td>{{addr}}</td>
-                    <td>{{num}}</td>
-                    <td>{{extra}}</td>
-                </tr>
-            {% endfor %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ count }}</td>
+                <td>{{ addr }}</td>
+                <td>{{ num }}</td>
+                <td>{{ extra }}</td>
+            </tr>
+        {% endfor %}
 
         </tbody>
         <tfood id="reviews-box">
