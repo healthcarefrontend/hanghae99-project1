@@ -9,8 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-    <title>Title</title>
-
+    <title>스파르타 종합병원</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
     <script>
 
@@ -56,24 +56,71 @@
     </script>
 
     <style>
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+
         .wrap {
-            width: 300px;
             margin: auto;
+            width: 500px;
+            padding-top: 20px;
+            text-align: center;
+            border-style: solid;
+            border-color: aqua;
+            border-width: thick;
+            border-radius: 50px 50px 50px 50px;
+        }
+
+        .wrap2 {
+            margin: auto;
+            width: 500px;
+        }
+
+        .mytitle {
+            width: 400px;
+            height: 350px;
+            margin: auto;
+            /*color: white;*/
+            /*text-align: center;*/
+
+            background-image: url("https://img.freepik.com/free-vector/people-walking-sitting-hospital-building-city-clinic-glass-exterior-flat-vector-illustration-medical-help-emergency-architecture-healthcare-concept_74855-10130.jpg?size=626&ext=jpg&ga=GA1.2.1587176078.1612828800");
+            background-size: cover;
+            background-position: center;
+            background-color: deepskyblue;
+            border-radius: 10px;
+            padding-top: 20px;
+        }
+
+        .buttonheight {
+            padding-top: 20px;
+            padding-left: 5px;
+        }
+
+        .sighin {
+            padding-bottom: 20px;
+        }
+
+        .fontsize{
+            font-size: 20px;
+        }
+        .fontadd{
+            font-family: 'Jua', sans-serif;
         }
     </style>
 </head>
 <body>
-<div class="section has-text-centered">
-    <h1 class="title">스파르타 병원</h1>
-    <div class="container" style="width:28%">
+<div class="mytitle"></div>
+<div class="wrap ">
+    <h1 class="title is-size-2">스파르타 종합병원</h1>
+    <div class="container" style="width:55%">
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label" for="user_id">ID</label>
+                <label class="label is-size-5" for="user_id">ID</label>
             </div>
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <input type="text" class="input" id="user_id" aria-describedby="emailHelp"
+                        <input type="text" class="input is-size-5" id="user_id" aria-describedby="emailHelp"
                                placeholder="My ID">
                     </div>
                 </div>
@@ -81,22 +128,34 @@
         </div>
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label" for="user_pw">PW</label>
+                <label class="label is-size-5" for="user_pw">PW</label>
             </div>
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <input type="password" class="input" id="user_pw" placeholder="My Password">
+                        <input type="password" class="input is-size-5" id="user_pw" placeholder="My Password">
                     </div>
                 </div>
             </div>
         </div>
-        <button class="button is-info" onclick="sign_in()">로그인</button>
-        <div>
-            <a href="http://localhost:5000/reg">회원가입</a>
+        <div class="buttonheight">
+            <button class="button is-info is-size-5 fontadd" onclick="sign_in()">로그인</button>
         </div>
+    </div>
+    <div class="wrap2 sighin">
+        <hr>
+        <a class="is-size-6" href="http://localhost:5000/reg">회원가입</a></hr>
+
     </div>
 </div>
 
+<footer class="footer">
+  <div class="content has-text-centered fontsize">
+    <p>
+      <strong>스파르타 종합병원</strong> by <strong> 18조 김힘찬 박유훈 이총명</strong>. 웹개발 미니 프로젝트
+      <a href="https://hanghae99.spartacodingclub.kr/">스파르타 코딩클럽 항해99</a>.
+    </p>
+  </div>
+</footer>
 </body>
 </html>
