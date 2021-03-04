@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -27,11 +27,19 @@
 </head>
 <style>
 
+
     * {
         font-family: 'Do Hyeon', sans-serif;
         margin: 0;
         padding: 0;
     }
+
+    .footer{
+            position: fixed;
+            bottom : 0;
+            height : 4px;
+            width : 100%
+        }
 
     a {
         text-decoration: none;
@@ -108,10 +116,24 @@
         padding: 35px;
         width: 600px;
         margin: auto;
+        background-color: whitesmoke;
     }
 
-    .text {
-        font-size: 20px;
+    .wrap2{
+        background-color: white;
+    }
+
+    #main_picture{
+        padding : 20px;
+        width : 100%;
+        height : 920px;
+        overflow : hidden;
+        background-color : snow;
+        background-repeat : no-repeat;
+        background-attachment: scroll;
+        background-size : 100% 464px;
+        -webkit-box-shadow: inset 3px 2px 25px 10px rgba(0,0,0,0.1);
+        box-shadow: inset 3px 2px 25px 10px rgba(0,0,0,0.1);
     }
 
     .image {
@@ -247,75 +269,78 @@
         <li><a href="#">진료과 의료진</a></li>
         <li><a href="#">진료카드</a></li>
         <li><a href="#">나의 스케쥴</a></li>
-        <li><img src="static/logo.png"></li>
+        <li><img src="{{ url_for('static', filename='static/logo.jpg') }}"></li>
         <li><a href="#">진료이력 조회</a></li>
         <li><a href="#">복용약 안내</a></li>
         <li><a href="#">스마트 결제</a></li>
     </ul>
 </div>
-<div class="wrap">
-    <div class="image">
-
-    </div>
-    <h1>스파르타 종합병원 예약 시스템.</h1>
-    <p style="color: dodgerblue">진료 예약은 최소한 7일 이상 여유를 두고 신청하시기 바랍니다.</p>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">성함</span>
-        </div>
-        <input id="order-name" type="text" class="form-control" aria-label="Default"
-               aria-describedby="inputGroup-sizing-default">
-    </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text">진료과</label>
-        </div>
-        <select class="custom-select" id="order-count">
-            <option selected>-- 진료 희망과를 선택하세요 --</option>
-            <option value="내과">내과</option>
-            <option value="외과">외과</option>
-            <option value="정형외과">정형외과</option>
-            <option value="피부과">피부과</option>
-            <option value="신경외과">신경외과</option>
-        </select>
-    </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">진료일</span>
+<div id="main_picture" class="wrap2" >
+    <div class="wrap">
+        <div class="image">
 
         </div>
-        <input id="order-addr" type="date" class="form-control" aria-label="Default"
-               aria-describedby="inputGroup-sizing-default">
-
-    </div>
-
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">진료시간</span>
+        <h1>스파르타 종합병원 예약 시스템.</h1>
+        <p style="color: dodgerblue">진료 예약은 최소한 7일 이상 여유를 두고 신청하시기 바랍니다.</p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">성함</span>
+            </div>
+            <input id="order-name" type="text" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
-        <select onclick="check_dup2()" class="custom-select" id="order-num">
-            <option selected>-- 진료 희망 시간 --</option>
-            <option value="오전 10:00~12:00">오전 10:00~12:00</option>
-            <option value="오후 13:00~15:00">오후 13:00~15:00</option>
-            <option value="오후 15:00~17:00">오후 15:00~17:00</option>
-            <option value="야간 19:00~21:00">오후 19:00~21:00</option>
-
-        </select>
-
-    </div>
-    <p id="makeReview" class="last"> 예약은 조기 마감될 수 있는점 참고바랍니다.</p>
-    <div class="input-group">
-        <div class="input-group-prepend ">
-            <span class="input-group-text">추가 기재 사항</span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text">진료과</label>
+            </div>
+            <select class="custom-select" id="order-count">
+                <option selected>-- 진료 희망과를 선택하세요 --</option>
+                <option value="내과">내과</option>
+                <option value="외과">외과</option>
+                <option value="정형외과">정형외과</option>
+                <option value="피부과">피부과</option>
+                <option value="신경외과">신경외과</option>
+            </select>
         </div>
-        <textarea id="order-extra" class="form-control" aria-label="With textarea"></textarea>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">진료일</span>
+
+            </div>
+            <input id="order-addr" type="date" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
+
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">진료시간</span>
+            </div>
+            <select onclick="check_dup2()" class="custom-select" id="order-num">
+                <option selected>-- 진료 희망 시간 --</option>
+                <option value="오전 10:00~12:00">오전 10:00~12:00</option>
+                <option value="오후 13:00~15:00">오후 13:00~15:00</option>
+                <option value="오후 15:00~17:00">오후 15:00~17:00</option>
+                <option value="야간 19:00~21:00">오후 19:00~21:00</option>
+
+            </select>
+
+        </div>
+        <p id="makeReview" class="last"> 예약은 조기 마감될 수 있는점 참고바랍니다.</p>
+        <div class="input-group">
+            <div class="input-group-prepend ">
+                <span class="input-group-text">추가 기재 사항</span>
+            </div>
+            <textarea id="order-extra" class="form-control" aria-label="With textarea"></textarea>
+        </div>
+        <button onclick="makeReview()" type="button" class="btn-secondary btn-lg btn-block bg-info">
+            예약하기
+        </button>
+
+
     </div>
-    <button onclick="makeReview()" type="button" class="btn-secondary btn-lg btn-block bg-info">
-        예약하기
-    </button>
-
-
 </div>
+
 <div class="reviews">
 
     <table class="table table-striped table-blue" class="done">
@@ -350,6 +375,18 @@
 
         </tfood>
     </table>
+</div>
+
+<footer class="footer">
+        <div class="ban">
+            <div class="content has-text-centered fontsize">
+                <p>
+                    <strong>스파르타 종합병원</strong> by <strong style="color: slateblue"> 18조 김힘찬 박유훈 이총명</strong>. 웹개발 미니 프로젝트
+                    <a href="https://hanghae99.spartacodingclub.kr/">스파르타 코딩클럽 항해99</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -58,15 +58,58 @@
     <style>
         * {
             font-family: 'Jua', sans-serif;
+            padding: 0;
+            margin : 0;
         }
 
+        /*
+        .banner {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            background-color: floralwhite;
+            overflow: hidden;
+            background-color: pink;
+            margin-top : 30px;
+            margin-bottom : 30px;
+        }
+
+        .banner > div {
+            width : 814px;
+            height : 304px;
+            background-color : #ececec;
+            overflow: hidden;
+            margin : 0px auto;
+        }
+
+        .chefs>div>p>span{
+            float : left;
+            width : 500px;
+            line-height: 26px;
+            margin-top : 80px;
+            background-color: yellow;
+        }
+
+        .chefs > div > p > span{
+            font-size : 26px;
+            font-weight: 600;
+        }
+
+        */
+
+        .footer{
+            position: fixed;
+            bottom : 0;
+            height : 10%;
+            width : 100%
+        }
         .wrap {
             margin: auto;
             width: 500px;
             padding-top: 20px;
             text-align: center;
             border-style: solid;
-            border-color: aqua;
+            border-color: lightsteelblue;
             border-width: thick;
             border-radius: 50px 50px 50px 50px;
         }
@@ -89,6 +132,7 @@
             background-color: deepskyblue;
             border-radius: 10px;
             padding-top: 20px;
+            margin-bottom: 30px;
         }
 
         .buttonheight {
@@ -100,10 +144,11 @@
             padding-bottom: 20px;
         }
 
-        .fontsize{
+        .fontsize {
             font-size: 20px;
         }
-        .fontadd{
+
+        .fontadd {
             font-family: 'Jua', sans-serif;
         }
 
@@ -154,12 +199,16 @@
 </div>
 
 <footer class="footer">
-  <div class="content has-text-centered fontsize">
-    <p>
-      <strong>스파르타 종합병원</strong> by <strong> 18조 김힘찬 박유훈 이총명</strong>. 웹개발 미니 프로젝트
-      <a href="https://hanghae99.spartacodingclub.kr/">스파르타 코딩클럽 항해99</a>.
-    </p>
-  </div>
-</footer>
+        <div class="ban">
+            <div class="content has-text-centered fontsize">
+                <p>
+                    <strong>스파르타 종합병원</strong> by <strong style="color: slateblue"> 18조 김힘찬 박유훈 이총명</strong>. 웹개발 미니 프로젝트
+                    <a href="https://hanghae99.spartacodingclub.kr/">스파르타 코딩클럽 항해99</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
 </body>
 </html>
