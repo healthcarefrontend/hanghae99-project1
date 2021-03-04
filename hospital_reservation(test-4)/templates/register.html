@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Optional JavaScript -->
@@ -29,6 +30,7 @@
         .wrap {
             width: 700px;
             margin: auto;
+            padding-top: 0px;
         }
 
 
@@ -43,10 +45,7 @@
         .join1 {
             width: 700px;
             margin: auto;
-            border: gray solid;
-            border-radius: 5px;
-            border-width: thick;
-            /*border-radius: 50px 50px 50px 50px;*/
+        {#border: darkseagreen solid;#}{#border-radius: 5px;#}{#border-width: thick;#}{#/*border-radius: 50px 50px 50px 50px;*/#}
 
         }
 
@@ -61,12 +60,32 @@
             width: 100px;
             display: block;
         }
+
         .alert-light {
-            width : 900px;
-            margin : 0px 0px 0px 20px;
-            padding : 0px 0px 0px 20px;
-            font-size : 15px;
+            width: 900px;
+            margin: 0px 0px 0px 20px;
+            padding: 0px 0px 0px 20px;
+            font-size: 15px;
         }
+
+        .footeradd {
+            {#padding-top: 120px;#}
+        }
+
+        .fontsize {
+            font-size: 20px;
+        }
+
+        .titleimg{
+            width: 350px;
+            height: 350px;
+            margin: auto;
+            background-image: url("https://lh3.googleusercontent.com/proxy/T4CtMgBiWOoRw6PIWe3Kp9qkuQJz1bTZfcBQ6gcMKVeSSYwqeeF4OOOQy5rW--FI7z_1N-Ey3mDGT0ntHRkgNQWo-jty7Y5SUkFlDXYWI3W9rQCFzM3b");
+            background-size: cover;
+            background-position: center;
+            background-color: aqua;
+        }
+
 
     </style>
 
@@ -176,10 +195,8 @@
 </head>
 
 <body>
+    <div class="titleimg"></div>
 <div class="wrap">
-    <div>
-        <h1 class="title1"> 회원가입</h1>
-    </div>
 
     <div class="join1">
         <div class="input-group mb-3">
@@ -193,7 +210,6 @@
                 <button onclick="check_dup()" type="button" class="btn btn-warning">중복확인</button>
             </div>
             <div id="help_id" class="alert-light" role="alert">아이디 입력형식에 오류가 있음</div>
-
 
 
             <div class="input-group mb-3">
@@ -223,6 +239,18 @@
         <button type="button" onclick="sign_up()" class="btn btn-primary btn-order">회원가입</button>
     </div>
 </div>
+
+<div class="footeradd fontsize">
+    <footer class="footer">
+        <div class="content has-text-centered fontsize">
+            <p>
+                <strong>스파르타 종합병원</strong> by <strong> 18조 김힘찬 박유훈 이총명</strong>. 웹개발 미니 프로젝트
+                <a href="https://hanghae99.spartacodingclub.kr/">스파르타 코딩클럽 항해99</a>.
+            </p>
+        </div>
+    </footer>
+</div>
+
 </body>
 
 
