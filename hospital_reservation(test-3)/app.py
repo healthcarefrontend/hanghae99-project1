@@ -41,6 +41,9 @@ def login():
 def register():
     return render_template('register.html')
 
+@app.route('/')
+def myimage(): return render_template("idnex.html")
+
 
 
 
