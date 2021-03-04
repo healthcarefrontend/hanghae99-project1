@@ -20,7 +20,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
-    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+    <title>병원 예약 포털</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Poor+Story&family=Single+Day&display=swap"
           rel="stylesheet">
@@ -94,7 +94,7 @@
         })
 
         $("#reviews-box").html("");
-        showReview();
+        //showReview();
     });
 
 
@@ -253,9 +253,27 @@
             <th scope="col">추가기재사항</th>
         </tr>
         </thead>
-        <tbody id="reviews-box">
+        <tbody >
+            {% for row in mynotes %}
+                {% set name = row["name"] %}
+                {% set count = row["count"] %}
+                {% set addr = row["addr"] %}
+                {% set num = row["num"] %}
+                {% set extra = row["extra"] %}
+
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{count}}</td>
+                    <td>{{addr}}</td>
+                    <td>{{num}}</td>
+                    <td>{{extra}}</td>
+                </tr>
+            {% endfor %}
 
         </tbody>
+        <tfood id="reviews-box">
+
+        </tfood>
     </table>
 </div>
 </body>

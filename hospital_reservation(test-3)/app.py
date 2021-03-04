@@ -2,8 +2,10 @@ from pymongo import MongoClient
 import jwt
 import datetime
 import hashlib
+
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from datetime import datetime, timedelta
+
 
 app = Flask(__name__)
 
@@ -20,8 +22,10 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         print(payload)
+        mynotes = list(db.mysystem.find({}, {'_id': False}))
         user_info = db.users.find_one({"id": payload["id"]})
-        return render_template('index.html', user_info=user_info)
+
+        return render_template('index.html', user_info=user_info, mynotes=mynotes)
 
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -146,7 +150,7 @@ def sign_in():
     if result is not None:
         payload = {
             'id': username_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=5)  # 로그인 24시간 유지
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
